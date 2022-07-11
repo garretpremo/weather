@@ -9,11 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4fda3a08-82e6-44dc-8a0a-a94fee3200ee" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/types.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse-zip-code-csv/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/parse-zip-code-csv/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip-code-data.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1657562108161</updated>
       <workItem from="1657562109821" duration="1322000" />
-      <workItem from="1657565627644" duration="11626000" />
+      <workItem from="1657565627644" duration="11795000" />
     </task>
     <servers />
   </component>
