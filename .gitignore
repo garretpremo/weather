@@ -11,6 +11,9 @@ coverage/
 # production
 build/
 
+# data generation
+parse-zip-code-csv/target
+
 # misc
 .DS_Store
 .env.local
