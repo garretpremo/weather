@@ -1,4 +1,6 @@
 export interface CurrentWeather {
+    cod: number;
+    message?: string;
     weather: {
         id: number;
         main: string;

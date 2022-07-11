@@ -23,8 +23,8 @@ parse-zip-code-csv/target
 
 # idea
 .idea/
-.idea/workspace.xml
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+!/.idea/workspace.xml
