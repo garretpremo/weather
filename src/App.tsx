@@ -87,7 +87,7 @@ function App() {
 
                 {/* City Input */}
                 <div className="city-form">
-                    <label>Place name</label>
+                    <label>City</label>
                     <input type="text" value={ city } onChange={ e => handleChangePlace(e.target.value) }/>
                     { invalidCity && (<span className="error">Invalid City</span>) }
                     { !invalidCity && (<span className="hint">City/City, Country/City, State, Country</span>) }
