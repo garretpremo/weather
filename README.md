@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# Yubico Weather
+A simple react weather app which leverages the free [openweathermap api](https://openweathermap.org/api) to display the 
+current weather, air quality & a 5 day forecast for a given input (zip code/city).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Running the app
+after cloning/forking the repository:
 
-In the project directory, you can run:
+### `npm install`
+Install dependencies
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Development notes:
+Before realizing that the api accepted a city/zip (I was under the impression that it only accepted lat/lon),
+I figured I had to convert the input into a lat/lng.
 
-### `npm test`
+For the zip code, that was easy, just get a `Map<zipcode, { lat, lon }>`, or equivalent json object. I found the 
+[zip code data](https://gist.github.com/erichurst/7882666) in the form of a csv, and wrote a quick rust program to
+output the csv file into a formatted jsx file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For the city search, that part would be a bit trickier. My idea for that was to get a Google Maps/Places API key and
+run a places search from the input text. 
 
-### `npm run build`
+After about an hour of sifting through the Google Maps/Places documentation, I realized that there was no way this 
+project could possibly be this hard. It was at that point I realized that the openweathermap api accepted a 
+queryParam for the city and the zip.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Regrettably, I removed the data generated for the zip codes & left the rust program in the source for reference.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The rest of the implementation took around the amount of time that was suggested, around 4-5 hours.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Since I wasted so much time on the API interactions mentioned above, I've decided to leave out stylistic embellishments
+and mobile support for the sake of time.  
 
-### `npm run eject`
+### Running the Rust Program
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `cd parse-zip-code-csv`
+### `cargo run`
