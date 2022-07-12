@@ -1,3 +1,5 @@
+import { AirQualityIndex } from './types';
+
 export const getDayOfWeek = (date: Date) => {
     return [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ][date.getDay()];
 }
@@ -21,3 +23,19 @@ export const getCurrentDateTime = () => {
 export const getDayOfWeekByDt = (dt_txt: string): string => {
     return getDayOfWeek(new Date(dt_txt));
 }
+
+export const getAirQuality = (airQualityIndex: AirQualityIndex | undefined): string => {
+    switch (airQualityIndex) {
+        case AirQualityIndex.GOOD:
+            return 'Good';
+        case AirQualityIndex.FAIR:
+            return 'Fair';
+        case AirQualityIndex.MODERATE:
+            return 'Moderate';
+        case AirQualityIndex.POOR:
+            return 'Poor';
+        case AirQualityIndex.VERY_POOR:
+            return 'Very Poor';
+    }
+    return '';
+};

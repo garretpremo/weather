@@ -52,3 +52,20 @@ export interface Forecast {
         weather: Weather[];
     }[];
 }
+
+export enum AirQualityIndex {
+    GOOD = 1,
+    FAIR = 2,
+    MODERATE = 3,
+    POOR = 4,
+    VERY_POOR = 5,
+}
+
+export interface AirQuality {
+    list: {
+        dt: number,
+        main: {
+            aqi: AirQualityIndex;
+        }
+    }[]
+}
