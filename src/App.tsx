@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { getCurrentForecastByZipCode, getCurrentWeatherByCity, getCurrentWeatherByZipCode } from './api';
-import { CurrentWeather } from './types';
+import { ForecastList } from './components/forecast-list';
+import { WeatherIcon } from './components/weather-icon';
+import { CurrentWeather, Forecast } from './types';
+import { getCurrentDateTime } from './util';
 
 function App() {
-    const getCurrentDateTime = () => {
-        const now = new Date();
-        const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
-        const hours = now.getHours();
-
-        let time: string;
-
-        if (hours === 0) {
-            time = `12:00 AM`
-        } else {
-            time = hours > 12 ? `${hours - 12}:00 PM` : `${hours}:00 AM`
-        }
-
-        return `${dayOfWeek} ${time}`;
-    }
 
     const [ zipCode, setZipCode ] = useState<string>('');
     const [ invalidZipCode, setInvalidZipCode ] = useState<boolean>(false);
     const [ city, setCity ] = useState<string>('');
     const [ invalidCity, setInvalidCity ] = useState<boolean>(false);
     const [ currentWeather, setCurrentWeather ] = useState<CurrentWeather | null>(null);
-    const [ forecast, setForecast ] = useState<any>(null);
+    const [ forecast, setForecast ] = useState<Forecast | null>(null);
     const [ currentTime, setCurrentTime ] = useState(getCurrentDateTime());
     const [ placeDebounce, setPlaceDebounce ] = useState<NodeJS.Timeout | null>(null);
 
@@ -35,7 +23,6 @@ function App() {
 
     useEffect(() => setInvalidZipCode(false), [ zipCode ]);
     useEffect(() => setInvalidCity(false), [ city ]);
-
 
     const handleChangeZipCode = (inputZipCode: string) => {
         setCity('');
@@ -87,14 +74,15 @@ function App() {
             <div className="place-form">
                 <div className="zip-code-form">
                     <label>Zip Code</label>
-                    <input type="text" value={zipCode} onChange={ e => handleChangeZipCode(e.target.value) }/>
+                    <input type="text" value={ zipCode } onChange={ e => handleChangeZipCode(e.target.value) }/>
                     { invalidZipCode && (<span className="error">Invalid Zip Code</span>) }
                 </div>
                 <span className="or"> Or </span>
                 <div className="place-name-form">
                     <label>Place name</label>
-                    <input type="text" value={city} onChange={ e => handleChangePlace(e.target.value) }/>
+                    <input type="text" value={ city } onChange={ e => handleChangePlace(e.target.value) }/>
                     { invalidCity && (<span className="error">Invalid City</span>) }
+                    { !invalidCity && (<span className="hint">City/City, Country/City, State, Country</span>) }
                 </div>
             </div>
             { currentWeather && (
@@ -102,10 +90,7 @@ function App() {
                     { currentWeather && (
                         <header className="current-weather-header">
                             <div className="header-left">
-                                <div className="weather-icon">
-                                    <img
-                                        src={ `http://openweathermap.org/img/w/${ currentWeather.weather?.[0]?.icon }.png` }/>
-                                </div>
+                                <WeatherIcon weather={currentWeather.weather?.[0] }/>
                                 <span className="temperature">{ currentWeather.main.temp.toFixed(0) }</span>
                                 <span> °F</span>
                                 <div className="header-left-weather-info">
@@ -120,14 +105,17 @@ function App() {
                                 <span>{ currentWeather.weather[0].main }</span>
                             </div>
                         </header>
-                    )}
+                    ) }
                     { forecast && (
                         <section className="forecast">
-
+                            <header className="forecast-header">Forecast</header>
+                            <div className="forecast-list">
+                                <ForecastList forecast={forecast}/>
+                            </div>
                         </section>
-                    )}
+                    ) }
                 </div>
-            )}
+            ) }
         </div>
     );
 }

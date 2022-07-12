@@ -10,20 +10,25 @@
 
     .place-form {
         display: flex;
+        justify-content: center;
         align-items: center;
 
         .zip-code-form, .place-name-form {
             display: flex;
             flex-direction: column;
             height: 60px;
+            width: 200px;
         }
 
         .or {
             margin: 0 1rem;
         }
 
-        .error {
+        .error, .hint {
             font-size: 75%;
+        }
+
+        .error {
             color: #fc6b6b;
         }
     }
@@ -70,6 +75,25 @@
             .location {
                 font-size: 1.25rem;
                 font-weight: bold;
+            }
+        }
+    }
+
+    .forecast {
+        .forecast-header {
+            width: 100%;
+            text-align: center;
+            margin: 0.5rem;
+            font-size: 120%;
+        }
+
+        .forecast-list {
+            display: flex;
+            justify-content: space-around;
+
+            .weather-block {
+                display: flex;
+                flex-direction: column;
             }
         }
     }

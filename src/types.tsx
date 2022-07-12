@@ -1,21 +1,25 @@
+export interface Weather {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+}
+
+interface WeatherMain {
+    feels_like: number;
+    humidity: number;
+    pressure: number;
+    temp: number;
+    temp_max: number;
+    temp_min: number;
+}
+
 export interface CurrentWeather {
     cod: number;
     message?: string;
-    weather: {
-        id: number;
-        main: string;
-        description: string;
-        icon: string;
-    }[];
+    weather: Weather[];
     name: string;
-    main: {
-        feels_like: number;
-        humidity: number;
-        pressure: number;
-        temp: number;
-        temp_max: number;
-        temp_min: number;
-    };
+    main: WeatherMain;
     rain: {
         "3h": number;
     };
@@ -25,4 +29,26 @@ export interface CurrentWeather {
     wind: {
         speed: number;
     }
+}
+
+export interface Forecast {
+    city: {
+        coord: {
+            lat: number;
+            lon: number;
+        }
+        country: string;
+        id: number;
+        name: string;
+        population: number;
+        sunrise: number;
+        sunset: number;
+        timezone: number;
+    };
+    list: {
+        dt: number;
+        dt_txt: string;
+        main: WeatherMain;
+        weather: Weather[];
+    }[];
 }
